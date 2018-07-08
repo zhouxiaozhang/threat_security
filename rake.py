@@ -1,32 +1,23 @@
 # -*- coding: utf-8 -*-
 
-
 from rake_nltk import Rake
 import pickle
 from nltk.tokenize import sent_tokenize
-
+file='process_non.txt'
+r = Rake()
+a=[]
 
 #open return file object
-def rake():
-    file='process_non.txt'
-    r = Rake()
-    with open(file,'r') as f:
-        docsk=pickle.load(f)
-        docs_phase=[]
-    #    for line in f:
-    #        a.append(line)
-        for doc in docsk:
-            
-            #sent_tokenize_list = sent_tokenize(doc)
-            r.extract_keywords_from_text(doc)
-            rank=r.get_ranked_phrases()
-            score=r.get_ranked_phrases_with_scores()
-            total_key=len(rank)
-            score_key=score[0:total_key/2]
-            docs_phase.append(score)
-    return docs_phase
-            
-docs_phase=rake()            
+with open(file,'r') as f:
+    docsk=pickle.load(f)
+#    for line in f:
+#        a.append(line)
+    doc1='Massive protests against Mohamed Morsi develop all over Egypt on the second anniversary of the 2011 revolution, including in Tahrir Square, where thousands of protesters gathered. At least 6 civilians and 1 police officer are shot dead in the Egyptian city of Suez, while 456 others are injured nationwide'
+    for doc in docsk[0:1]:
         
+        #sent_tokenize_list = sent_tokenize(doc)
+        r.extract_keywords_from_text(doc)
+        rank=r.get_ranked_phrases()
+        score=r.get_ranked_phrases_with_scores()
         
         
